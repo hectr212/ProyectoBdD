@@ -5,3 +5,11 @@ C:\Users\byaku\OneDrive\Escritorio\Estructura de Datos\Proyecto1\Proyecto1_EdD\P
 C:\Users\byaku\OneDrive\Escritorio\Estructura de Datos\Proyecto1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.csproj.CoreCompileInputs.cache
 C:\Users\byaku\OneDrive\Escritorio\Estructura de Datos\Proyecto1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.exe
 C:\Users\byaku\OneDrive\Escritorio\Estructura de Datos\Proyecto1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.pdb
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\bin\Debug\Proyecto1_EdD.exe.config
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\bin\Debug\Proyecto1_EdD.exe
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\bin\Debug\Proyecto1_EdD.pdb
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.csproj.AssemblyReference.cache
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.csproj.SuggestedBindingRedirects.cache
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.csproj.CoreCompileInputs.cache
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.exe
+C:\Users\ivanc\OneDrive\Escritorio\Estructura de Datos\Proyecto grupo #1\Proyecto1_EdD\Proyecto1_EdD\obj\Debug\Proyecto1_EdD.pdb
