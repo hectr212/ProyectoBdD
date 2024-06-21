@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,23 +31,24 @@ namespace Proyecto1_EdD
 
         static void Main(string[] args)
         {
+            Console.Clear();
             MostrarMenuPrincipal();
         }
 
         public static void MostrarMenuPrincipal()
         {
             string opcion = "";
-            string menuOpciones = "**Menú Principal**\n";
-            menuOpciones += "1. Inicialiar vectores\n";
-            menuOpciones += "2. Realizar pagos\n";
-            menuOpciones += "3. Consultar pagos\n";
-            menuOpciones += "4. Modifiar pagos\n";
-            menuOpciones += "5. Eliminar pagos\n";
-            menuOpciones += "6. Submenú reportes\n";
-            menuOpciones += "7. Salir";
+            string menuPrincipal = "**Menú Principal**\n";
+            menuPrincipal += "1. Inicialiar vectores\n";
+            menuPrincipal += "2. Realizar pagos\n";
+            menuPrincipal += "3. Consultar pagos\n";
+            menuPrincipal += "4. Modifiar pagos\n";
+            menuPrincipal += "5. Eliminar pagos\n";
+            menuPrincipal += "6. Submenú reportes\n";
+            menuPrincipal += "7. Salir";
             do
             {
-                Console.WriteLine(menuOpciones);
+                Console.WriteLine(menuPrincipal);
                 opcion = Console.ReadLine();
                 switch (opcion)
                 {
@@ -59,12 +61,14 @@ namespace Proyecto1_EdD
                     case "3":
                         ConsultarPagos();
                         break;
-                    case "4":   
+                    case "4":
+                        modificarPagos();
                         break;
                     case "5":
                         EliminarPagos();
                         break;
                     case "6":
+                        Console.Clear(); // Limpia la pantalla
                         SubMenu();
                         break;
                     case "7":
@@ -78,16 +82,17 @@ namespace Proyecto1_EdD
 
         public static void SubMenu()
         {
+            Console.Clear(); // Limpia la pantalla
             string opcion = "";
-            string menuOpciones = "**Submenú reportes**\n";
-            menuOpciones += "1. Ver todos los pagos\n";
-            menuOpciones += "2. Ver pagos por tipo de servicio\n";
-            menuOpciones += "3. Ver pagos por código de caja\n";
-            menuOpciones += "4. Ver dinero comisionado por servicios\n";
-            menuOpciones += "5. Regresar al menú principal";
+            string menuSub = "**Submenú reportes**\n";
+            menuSub += "1. Ver todos los pagos\n";
+            menuSub += "2. Ver pagos por tipo de servicio\n";
+            menuSub += "3. Ver pagos por código de caja\n";
+            menuSub += "4. Ver dinero comisionado por servicios\n";
+            menuSub += "5. Regresar al menú principal";
             do
             {
-                Console.WriteLine(menuOpciones);
+                Console.WriteLine(menuSub);
                 opcion = Console.ReadLine();
                 switch (opcion)
                 {
@@ -104,6 +109,7 @@ namespace Proyecto1_EdD
                         VerDineroComisionado();
                         break;
                     case "5":
+                        Console.Clear(); // Limpia la pantalla
                         MostrarMenuPrincipal();
                         break;
                     default:
@@ -132,7 +138,11 @@ namespace Proyecto1_EdD
                 vuelto[i] = 0;
             }
             indiceActual = 0;
+            Console.Clear(); // Limpia la pantalla
             Console.WriteLine("Vectores inicializados con éxito.");
+            Console.WriteLine("Presione cualquier tecla para continuar");
+
+
         }
         public static void RealizarPagos() //Incompleto *IVÁN*
         {
@@ -141,11 +151,9 @@ namespace Proyecto1_EdD
                 numPago[indiceActual] = indiceActual + 1;
                 Console.WriteLine($"Número de pago: {indiceActual + 1}");
 
-                Console.WriteLine("Ingrese la fecha. ejemplo: '20 de marzo'");
-                fecha[indiceActual] = Console.ReadLine();
-
-                Console.WriteLine("Ingrese la hora");
-                hora[indiceActual] = Console.ReadLine();
+                DateTime now = DateTime.Now;
+                Console.WriteLine("Fecha y hora actual:" + now);
+                fecha[indiceActual] = Convert.ToString(now);
 
                 Console.WriteLine("Ingrese su número de cédula:");
                 cedula[indiceActual] = Console.ReadLine();
@@ -172,6 +180,24 @@ namespace Proyecto1_EdD
                 montoAPagar[indiceActual] = float.Parse(Console.ReadLine());
 
                 //Monto comision y monto deducido van aquí
+                float comision = 0;
+                float montoFacturado = montoAPagar[indiceActual];
+                switch (tipoServicio[indiceActual])
+                {
+                    case 1:
+                        comision = 0.04f;
+                        break;
+                    case 2:
+                        comision = 0.055f;
+                        break;
+                    case 3:
+                        comision = 0.065f;
+                        break;
+                }
+
+                montoComision[indiceActual] = montoFacturado * comision;
+
+                Console.WriteLine(montoComision[indiceActual]);
 
                 Console.WriteLine("Ingrese el monto que paga el cliente: ");
                 montoPagadoCliente[indiceActual] = float.Parse(Console.ReadLine());
@@ -224,6 +250,145 @@ namespace Proyecto1_EdD
         }
 
         // modificarpagos() va aquí *IVÁN*
+        public static void modificarPagos()
+        {
+            Console.WriteLine("Ingrese el número de pago que desea modificar: ");
+            int numeroPago = int.Parse(Console.ReadLine());
+
+            bool encontrado = false;
+            for (int i = 0; i < tamaño; i++)
+            {
+                if (numPago[i] == numeroPago)
+                {
+                    edicion(i);
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if (!encontrado)
+            {
+                Console.WriteLine("Pago no se encuentra registrado.");
+            }
+        }
+
+        public static void mostrarRegistro(int indice)
+        {
+            Console.WriteLine($"Número de Pago: {numPago[indice]}");
+            Console.WriteLine($"Fecha: {fecha[indice]}");
+            Console.WriteLine($"Cédula: {cedula[indice]}");
+            Console.WriteLine($"Nombre: {nombre[indice]}");
+            Console.WriteLine($"Primer Apellido: {apellido1[indice]}");
+            Console.WriteLine($"Segundo Apellido: {apellido2[indice]}");
+            Console.WriteLine($"Número de Caja: {numCaja[indice]}");
+            Console.WriteLine($"Tipo de Servicio: {tipoServicio[indice]}");
+            Console.WriteLine($"Monto a Pagar: {montoAPagar[indice]}");
+            Console.WriteLine($"Monto Deducido: {montoDeducido[indice]}");
+            Console.WriteLine($"Monto Pagado por el Cliente: {montoPagadoCliente[indice]}");
+            Console.WriteLine($"Vuelto: {vuelto[indice]}");
+        }
+
+        public static void edicion(int indice)
+        {
+            Console.Clear(); // Limpia la pantalla
+
+            mostrarRegistro(indice);
+            string opcion = "";
+            string menuOpciones = "**Submenú reportes**\n";
+            menuOpciones += "1. Modificar Cédula";
+            menuOpciones += "2. Modificar Nombre\n";
+            menuOpciones += "3. Modificar Primer Apellido\n";
+            menuOpciones += "4. Modificar Segundo Apellido\n";
+            menuOpciones += "5. Modificar tipo de Servicio";
+            menuOpciones += "6. Modificar Monto a Pagar";
+            menuOpciones += "7. Modificar Monto Pagado por el Cliente";
+            menuOpciones += "8. Menu Principal";
+            do
+            {
+                Console.WriteLine(menuOpciones);
+                opcion = Console.ReadLine();
+                switch (opcion)
+                {
+                    case "1":
+                        Console.WriteLine("Dato registrado:" + cedula[indice]);
+                        Console.WriteLine("Ingrese su número de cédula:");
+                        cedula[indice] = Console.ReadLine();
+                        break;
+                    case "2":
+                        Console.WriteLine("Dato registrado:" + nombre[indice]);
+                        Console.WriteLine("Ingrese su nombre:");
+                        nombre[indice] = Console.ReadLine();
+                        break;
+                    case "3":
+                        Console.WriteLine("Dato registrado:" + apellido1[indice]);
+                        Console.WriteLine("Ingrese su primer apellido:");
+                        apellido1[indice] = Console.ReadLine();
+                        break;
+                    case "4":
+                        Console.WriteLine("Dato registrado:" + apellido2[indice]);
+                        Console.WriteLine("Ingrese su primer apellido:");
+                        apellido2[indice] = Console.ReadLine();
+                        break;
+                    case "5":
+                        Console.WriteLine("Dato registrado:" + tipoServicio[indice]);
+                        Console.WriteLine("Ingrese el tipo de servicio:");
+                        tipoServicio[indice] = int.Parse(Console.ReadLine());
+                        float comision = 0;
+                        float montoFacturado = montoAPagar[indice];
+                        switch (tipoServicio[indice])
+                        {
+                            case 1:
+                                comision = 0.04f;
+                                break;
+                            case 2:
+                                comision = 0.055f;
+                                break;
+                            case 3:
+                                comision = 0.065f;
+                                break;
+                        }
+                        montoComision[indice] = montoFacturado * comision;
+                        break;
+                    case "6":
+                        Console.WriteLine("Dato registrado:" + montoAPagar[indice]);
+                        Console.WriteLine("Ingrese el monto a pagar: ");
+                        montoAPagar[indiceActual] = float.Parse(Console.ReadLine());
+                        comision = 0;
+                        montoFacturado = montoAPagar[indice];
+                        switch (tipoServicio[indice])
+                        {
+                            case 1:
+                                comision = 0.04f;
+                                break;
+                            case 2:
+                                comision = 0.055f;
+                                break;
+                            case 3:
+                                comision = 0.065f;
+                                break;
+                        }
+                        montoComision[indice] = montoFacturado * comision;
+                        break;
+                    case "7":
+                        Console.WriteLine("Dato registrado:" + montoPagadoCliente[indice]);
+                        Console.WriteLine("Ingrese el monto que paga el cliente: ");
+                        montoPagadoCliente[indice] = float.Parse(Console.ReadLine());
+
+                        if (montoPagadoCliente[indice] < montoAPagar[indice])
+                        {
+                            Console.WriteLine("Cantidad isuficiente.");
+                            return;
+                        }
+                        break;
+                    case "8":
+                        MostrarMenuPrincipal();
+                        break;
+                    default:
+                        break;
+                }
+            } while (true);
+        }
+
 
         public static void EliminarPagos()
         {
