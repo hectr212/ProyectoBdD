@@ -1,0 +1,7 @@
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\bin\Debug\Proyecto1BD.exe.config
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\bin\Debug\Proyecto1BD.exe
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\bin\Debug\Proyecto1BD.pdb
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\obj\Debug\Proyecto1BD.csproj.AssemblyReference.cache
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\obj\Debug\Proyecto1BD.csproj.CoreCompileInputs.cache
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\obj\Debug\Proyecto1BD.exe
+C:\Users\byaku\OneDrive\Escritorio\Proyecto1BD\Proyecto1BD\obj\Debug\Proyecto1BD.pdb
