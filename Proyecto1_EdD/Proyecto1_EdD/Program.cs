@@ -26,8 +26,9 @@ namespace Proyecto1_EdD
         static float[] montoDeducido = new float[tamaño];
         static float[] montoPagadoCliente = new float[tamaño];
         static float[] vuelto = new float[tamaño];
-
+        static string[] modulos = new string[5];
         static int indiceActual = 0;
+
 
         static void Main(string[] args)
         {
@@ -37,15 +38,18 @@ namespace Proyecto1_EdD
 
         public static void MostrarMenuPrincipal()
         {
+
             string opcion = "";
             string menuPrincipal = "**Menú Principal**\n";
-            menuPrincipal += "1. Inicialiar vectores\n";
+            menuPrincipal += ("").PadRight(24, '-');
+            menuPrincipal += "\n1. Inicialiar vectores\n";
             menuPrincipal += "2. Realizar pagos\n";
             menuPrincipal += "3. Consultar pagos\n";
             menuPrincipal += "4. Modifiar pagos\n";
             menuPrincipal += "5. Eliminar pagos\n";
             menuPrincipal += "6. Submenú reportes\n";
             menuPrincipal += "7. Salir";
+
             do
             {
                 Console.WriteLine(menuPrincipal);
@@ -53,18 +57,29 @@ namespace Proyecto1_EdD
                 switch (opcion)
                 {
                     case "1":
-                        IniciarVectores();
+                        string opc = opcion;
+                        Console.Clear(); // Limpia la pantalla
+                        mensaje2(opcion);
+                        IniciarVectores(opc);
                         break;
                     case "2":
+                        Console.Clear(); // Limpia la pantalla
+                        mensaje2(opcion);
                         RealizarPagos();
                         break;
                     case "3":
+                        Console.Clear(); // Limpia la pantalla
+                        mensaje2(opcion);
                         ConsultarPagos();
                         break;
                     case "4":
+                        Console.Clear(); // Limpia la pantalla
+                        mensaje2(opcion);
                         modificarPagos();
                         break;
                     case "5":
+                        Console.Clear(); // Limpia la pantalla
+                        mensaje2(opcion);
                         EliminarPagos();
                         break;
                     case "6":
@@ -85,7 +100,8 @@ namespace Proyecto1_EdD
             Console.Clear(); // Limpia la pantalla
             string opcion = "";
             string menuSub = "**Submenú reportes**\n";
-            menuSub += "1. Ver todos los pagos\n";
+            menuSub += ("").PadRight(24, '-');
+            menuSub += "\n1. Ver todos los pagos\n";
             menuSub += "2. Ver pagos por tipo de servicio\n";
             menuSub += "3. Ver pagos por código de caja\n";
             menuSub += "4. Ver dinero comisionado por servicios\n";
@@ -117,7 +133,7 @@ namespace Proyecto1_EdD
                 }
             } while (true);
         }
-        public static void IniciarVectores()
+        public static void IniciarVectores(string opc)
         {
             for (int i = 0; i < tamaño; i++)
             {
@@ -140,7 +156,9 @@ namespace Proyecto1_EdD
             indiceActual = 0;
             Console.Clear(); // Limpia la pantalla
             Console.WriteLine("Vectores inicializados con éxito.");
-            Console.WriteLine("Presione cualquier tecla para continuar");
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadLine();
+            Console.Clear();
 
 
         }
@@ -246,9 +264,18 @@ namespace Proyecto1_EdD
             if (!encontrado)
             {
                 Console.WriteLine("Pago no se encuentra registrado.");
+                Console.WriteLine("\nPresione cualquier tecla para continuar");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
 
+        public static void continuar()
+        {
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadLine();
+            Console.Clear();
+        }
         // modificarpagos() va aquí *IVÁN*
         public static void modificarPagos()
         {
@@ -269,6 +296,9 @@ namespace Proyecto1_EdD
             if (!encontrado)
             {
                 Console.WriteLine("Pago no se encuentra registrado.");
+                Console.WriteLine("\nPresione cualquier tecla para continuar");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
 
@@ -294,8 +324,11 @@ namespace Proyecto1_EdD
 
             mostrarRegistro(indice);
             string opcion = "";
-            string menuOpciones = "**Submenú reportes**\n";
-            menuOpciones += "1. Modificar Cédula";
+            string menuOpciones = "**Opciones para modificar**\n";
+            menuOpciones += ("").PadRight(24, '-');
+            Console.WriteLine("");
+
+            menuOpciones += "\n1. Modificar Cédula";
             menuOpciones += "2. Modificar Nombre\n";
             menuOpciones += "3. Modificar Primer Apellido\n";
             menuOpciones += "4. Modificar Segundo Apellido\n";
@@ -390,6 +423,33 @@ namespace Proyecto1_EdD
         }
 
 
+        public static void mensaje()
+        {
+            string titulo = "Sistema de pago de servicios públicos";
+            Console.WriteLine(titulo.PadLeft(titulo.Length + 5));
+        }
+
+        public static void mensaje2(string opcion)
+        {
+            string subtitulo;
+            switch (opcion)
+            {
+                case "1":
+                    subtitulo = "Super Servicios X - ";
+                    Console.WriteLine(subtitulo.PadLeft(subtitulo.Length + 5));
+                    break;
+                case "2":
+                    subtitulo = "Super Servicios X - ";
+                    Console.WriteLine(subtitulo.PadLeft(subtitulo.Length + 5));
+                    break;
+                case "3":
+                    subtitulo = "Super Servicios X - ";
+                    Console.WriteLine(subtitulo.PadLeft(subtitulo.Length + 5));
+                    break;
+            }
+        }
+
+
         public static void EliminarPagos()
         {
             Console.Write("Ingrese el número de pago que desea eliminar: ");
@@ -421,15 +481,24 @@ namespace Proyecto1_EdD
                         vuelto[i] = 0;
 
                         Console.WriteLine("La información ya fue eliminada.");
+                        Console.WriteLine("\nPresione cualquier tecla para continuar");
+                        Console.ReadLine();
+                        Console.Clear();
                     }
                     else
                     {
                         Console.WriteLine("La información no fue eliminada.");
+                        Console.WriteLine("\nPresione cualquier tecla para continuar");
+                        Console.ReadLine();
+                        Console.Clear();
                     }
                     return;
                 }
             }
             Console.WriteLine("Pago no se encuentra registrado.");
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadLine();
+            Console.Clear();
         }
 
         public static void MostrarPago(int indice)
@@ -489,13 +558,92 @@ namespace Proyecto1_EdD
         }
         public static void VerDineroComisionado()
         {
+            int[] cant = new int[3];
+            float[] total = new float[3];
             for (int i = 0; i < tamaño; i++)
             {
                 if (numPago[i] != 0)
                 {
-                    Console.WriteLine($"Número de Pago: {numPago[i]}");
-                    Console.WriteLine($"Monto Comisionado: {montoComision[i]}");
+                    switch (Convert.ToString(tipoServicio[i]))
+                    {
+                        case "1":
+                            cant[0] = cant[0] +1;
+                            total[0] = total[0] + montoComision[i];
+                        break;
+                        
+                        case "2":
+                            cant[1] = cant[1] + 1;
+                            total[1] = total[1] + montoComision[i];
+                            break;
+                        
+                        case "3":
+                            cant[2] = cant[2] + 1;
+                            total[2] = total[2] + montoComision[i];
+                            break;
+
+
+                    }
                 }// Se debe mejorar **
+                else
+                {
+
+                    Console.WriteLine("No se encuentran registros");
+                    break;
+                }
+      
+            }
+            Console.Clear();
+            string titulo = "Sistema de pago de servicios públicos\n";
+            string subtitulo = "Reporte de Dinero Comisionado - Desgloce por Tipo de Servicio\n";
+            Console.WriteLine(titulo.PadLeft(titulo.Length + 50));
+            Console.WriteLine(subtitulo.PadLeft(subtitulo.Length + 45));
+
+            tabla(cant, total);
+            Console.WriteLine("\nPresione cualquier tecla para continuar");
+            Console.ReadLine();
+            Console.Clear();
+        }
+
+        public static void tabla(int[] cant, float[] total)
+        {
+            PrintLine();
+            PrintRow("ITEM", "Cant. Transacciones", "Total Comisionado");
+            PrintLine();
+            PrintRow("1.Electricidad", Convert.ToString(cant[0]), Convert.ToString(total[0]));
+            PrintRow("2.Telefono    ", Convert.ToString(cant[1]), Convert.ToString(total[1]));
+            PrintRow("3.Agua        ", Convert.ToString(cant[2]), Convert.ToString(total[2]));
+            PrintRow("", "", "");
+            PrintRow("Total", "", Convert.ToString(total.Sum()));
+            PrintLine();
+        }
+        static int tableWidth = 73;
+        static void PrintLine()
+        {
+            Console.WriteLine(new string('-', tableWidth));
+        }
+        static void PrintRow(params string[] columns)
+        {
+            int width = (tableWidth - columns.Length) / columns.Length;
+            string row = "|";
+
+            foreach (string column in columns)
+            {
+                row += AlignCentre(column, width) + "|";
+            }
+
+            Console.WriteLine(row);
+        }
+        static string AlignCentre(string text, int width)
+        {
+            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return new string(' ', width);
+            }
+            else
+            {
+                return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
             }
         }
     }
